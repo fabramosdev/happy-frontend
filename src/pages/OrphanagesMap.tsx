@@ -11,6 +11,7 @@ import '../styles/pages/orphanages-map.css'
 
 function OrphanagesMap() {
 
+    // DARK MODE FUNCTION - START
     const [map, setMap] = useState('light-v10')
 
     function darkMode() {
@@ -20,6 +21,7 @@ function OrphanagesMap() {
             setMap('light-v10')
         }
     }
+    // DARK MODE FUNCTION - END
 
     return (
         <div id="page-map">
@@ -47,7 +49,8 @@ function OrphanagesMap() {
                     url={`https://api.mapbox.com/styles/v1/mapbox/${map}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
                 />
             </Map>
-
+            
+            {/** DARK MODE MAP */}    
             <div className="dark-mode" onClick={darkMode}>
                 <FiSun color="#fff" size={32} />
             </div>

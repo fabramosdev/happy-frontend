@@ -67,6 +67,16 @@
 
 /* DARK MODE */
 
+#page-map aside.dark-sidebar {
+    width: 440px;
+    background: linear-gradient(329.54deg, #050505 0%, #050505 100%);
+    padding: 80px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 #page-map .dark-mode {
     z-index: 999;
     cursor: pointer;

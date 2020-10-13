@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { FiPlus, FiSun } from 'react-icons/fi'
+import { FiPlus, FiSun, FiMoon } from 'react-icons/fi'
 import { Map, TileLayer } from 'react-leaflet'
 
 
@@ -11,21 +11,15 @@ import '../styles/pages/orphanages-map.css'
 
 function OrphanagesMap() {
 
-    // DARK MODE FUNCTION - START
-    const [map, setMap] = useState('light-v10')
+    const [darkMode, setDarkMode] = useState(false)
 
-    function darkMode() {
-        if (map === 'light-v10') {
-            setMap('dark-v10')
-        } else {
-            setMap('light-v10')
-        }
+    const toggle = () => {
+        setDarkMode(!darkMode)
     }
-    // DARK MODE FUNCTION - END
 
     return (
         <div id="page-map">
-            <aside>
+            <aside className={`${darkMode ? 'dark-sidebar' : 'light'}`}>
                 <header>
                     <img src={mapMarkerImg} alt="Happy"/>
 
@@ -46,13 +40,13 @@ function OrphanagesMap() {
             >
                 {/* {<TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />} */}
                 <TileLayer 
-                    url={`https://api.mapbox.com/styles/v1/mapbox/${map}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
+                    url={`https://api.mapbox.com/styles/v1/mapbox/${darkMode ? 'dark':'light'}-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
                 />
             </Map>
             
             {/** DARK MODE MAP */}    
-            <div className="dark-mode" onClick={darkMode}>
-                <FiSun color="#fff" size={32} />
+            <div className="dark-mode" onClick={toggle}>
+                {darkMode ? <FiSun size={32} color="#fff" /> : <FiMoon size={32} color="#fff" />}
             </div>
 
             <Link to="" className="create-orphanage">
